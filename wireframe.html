@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+
+<head>
+    <script>
+        function myFunction() {
+            document.getElementById("myDropdown").classList.toggle("show");
+        }
+        window.onclick = function (e) {
+            if (!e.target.matches('.dropbtn')) {
+                var myDropdown = document.getElementById("myDropdown");
+                if (myDropdown.classList.contains('show')) {
+                    myDropdown.classList.remove('show');
+                }
+            }
+        }
+    </script>
+    <meta charset="UTF-8" />
+    <link href="basic.css" rel="stylesheet" type="text/css" />
+    <link href="style.css" rel="stylesheet" type="text/css" />
+    <script src="bookmark.js" type="module"></script>
+</head>
+<html>
+
+<body>
+
+    <div id="container">
+
+        <body>
+            <main>
+                <h2>My BookMark</h2>
+                <label for="OnClick">Star Rate Below</label>
+                <div class="rating">
+                    <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
+                </div>
+                <div class="dropdown">
+                    <button onclick="myFunction()" class="dropbtn">Bookmarks</button>
+                    <div id="myDropdown" class="dropdown-content">
+                        <a href="validateName">Name</a>
+                        <a href="validateUrl,">Url</a>
+                        <a href="bookmark.js">Bookmarks</a>
+                    </div>
+                </div>
+                <form>
+
+                    <p>Title:</p>
+                    <input type="text" name="Title" placeholder="BookMark..">
+
+
+                    <br><label for="ul">Url link:</label></br>
+                    <input type="url" id="url" name="url">
+                    <br><label for="ul">Rating:</label></br>
+                    <select name="rating">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+
+                    <br> <label for="description">Description:</label></pr>
+                    <ins><textarea name="text" id="description" cols="30" rows="10"></textarea></ins>
+                    <br> <button>Submit</button></br>
+                </form>
+
+            </main>
+        </body>
+
+</html>

@@ -3,16 +3,16 @@ import api from "./api.js"
 const render = function () {
     if (store.adding) {
         $('main').html(generateaddBookmarkHtml())
-    } else {
-        let html = `
-        <header>
-<h1>BookMarkAPP</h1>
-</header>
-        <button id ="newbookmark">ADD BOOKMARK</button>
+        $('#header').hide()
 
-        `
+    } else {
+        $('#header').show()
+        let html = ``
+
         if (store.bookmarks) {
-            html = html + store.bookmarks.map(item => renderitem(item))
+            html = html + store.bookmarks.filter(function (item) {
+                return item.rating >= store.filter
+            }).map(item => generateBookmarkHtml(item))
         }
         $("main").html(html)
     }
@@ -26,12 +26,20 @@ const render = function () {
 }
 
 function mainDataid() {
-    
+
     return;
 
 }
+
+
+
+
 const bindEvents = function () {
-    $("main").on("click", "#newbookmark", (e) => {
+    $("#rating-filter").change(function (event) {
+        store.filter = parseInt($(event.currentTarget).val())
+        render()
+    })
+    $("#newbookmark").on("click", (e) => {
         store.adding = true
         this.render()
     })
@@ -44,13 +52,19 @@ const bindEvents = function () {
 
         api.newBookmark(title, url, rating, text)
             .then(data => {
-                store.addBookmark(data)
-                store.adding = false
-                this.render()
+                if (!store.error) {
+                    store.addBookmark(data);
+                    store.adding = false;
+
+                } else {
+                    store.error = data.message
+                }
+                render();
+                store.error = null
             })
     })
     $("main").on("click", ".delete", function (event) {
-        let id = $(event.currentTarget).closest("li").data("item-id")
+        let id = $(event.currentTarget).data("item-id")
         api.deleteBookmark(id).then(function () {
             store.deleteBook(id)
             render()
@@ -58,7 +72,7 @@ const bindEvents = function () {
     })
 }
 const renderitem = function (item) {
-    return ` <li data-item-id="${item.id}"> 
+    return ` <li data-item-id="${item.id}">
 ${item.title} <button class="delete">DELETE</button>
 </li>
 `
@@ -73,52 +87,16 @@ export default {
 /// render function ( tells the page to put inside the main: tag)HTML method in Jquery
 // (if store.adding = true )$("main").html (generatebookmarkform())
 //generatebookmarklist(am i on the right path?)
-const generateBookmark = function () {
-    $('main').on('click', '.remove', (e) => {
-        e.preventDefault();
-        console.log('delete bookmarklist');
-        let id = getItemIdFromElement(e.currentTarget);
-        api.deleteBookmark(id)
-            .then(() => {
-                store.removeBookmark(id);
-                render();
-            })
-            .catch((error) => {
-                store.setError(error.message);
-            });
-    });
-};
 
-const generatebookmarklist = function () {
-    $('main').on('submit', 'main-container', (e) => {
-        console.log('create bookmarklist');
-        e.preventDefault();
-        const name = $('name').val();
-        const url = $('url').val();
-        const rating = $('.rating:checked').val();
-        const desc = $('description').val();
-        $('main-container')[0].reset();
-        api.newBookmark(store.bookmarks.length, name, rating, url, desc)
-            .then((newBookmark) => {
-                store.addBookmark(newBookmark);
-                store.adding = false;
-                render();
-            })
-            .catch((error) => {
-                store.setError(`${error}`);
-            });
-    });
-};
 const generateaddBookmarkHtml = function () {
 
-    return  `<div id="container">
+    let html = `<div>
     <header>
     <h1>BookMarkAPP</h1>
 </header>
 <form id="addform">
     <p>Title:</p>
     <input type="text" name="title" placeholder="bookmarklist..">
-
     <br><label for="ul">Url link:</label></br>
     <input type="url" id="url" name="url">
     <br><label for="ul">Rating:</label></br>
@@ -134,6 +112,10 @@ const generateaddBookmarkHtml = function () {
     <ins><textarea name="text" id="" cols="30" rows="10"></textarea></ins>
     <br><button>Submit</button>
 </form> </div>`
+    if (store.error) {
+        html += `<h1>${store.error}</h1>`
+    }
+    return html
 
 }
 const generateBookmarkHtml = function (item) {
@@ -141,7 +123,7 @@ const generateBookmarkHtml = function (item) {
         let expandedBookmarkHtml = `
     <form class="expanded-bookmarks">
     <div class="title-bar">
-        <button class="remove" data-item-id='${item.id}'>X</button>
+        <button class="delete" data-item-id='${item.id}'>DELETE</button>
         <legend class="saved-title">${item.title}</legend>
     </div>
     <div class="link-btn">
@@ -161,7 +143,7 @@ const generateBookmarkHtml = function (item) {
         let unexpandedBookmarkHtml = `
     <form class="collapsed-bookmarks">
     <div class="title-bar">
-        <button class="remove" data-item-id='${item.id}'>X</button>
+        <button class="delete" data-item-id='${item.id}'>DELETE</button>
         <legend class="saved-title">${item.title}</legend>
         <div class="display-rating-collapsed">${item.rating}</div>
     </div>

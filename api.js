@@ -4,7 +4,7 @@ const BASE_URL = "https://thinkful-list-api.herokuapp.com/Penelope"
 const listApiFetch = async function (...args) {
     let error;
     const res = await fetch(...args);
-    error = newFunction(res, error);
+    store.error = newFunction(res, error);
     return res.json();
 
 };

@@ -33,7 +33,6 @@ function mainDataid() {
 
 
 
-
 const bindEvents = function () {
     $("#rating-filter").change(function (event) {
         store.filter = parseInt($(event.currentTarget).val())

@@ -26,6 +26,7 @@ const render = function () {
 }
 
 function mainDataid() {
+    
     return;
 
 }
@@ -109,7 +110,9 @@ const generatebookmarklist = function () {
     });
 };
 const generateaddBookmarkHtml = function () {
-    return `<header>
+
+    return  `<div id="container">
+    <header>
     <h1>BookMarkAPP</h1>
 </header>
 <form id="addform">
@@ -130,8 +133,7 @@ const generateaddBookmarkHtml = function () {
     <br> <label for="description">Description:</label></br>
     <ins><textarea name="text" id="" cols="30" rows="10"></textarea></ins>
     <br><button>Submit</button>
-
-</form>`
+</form> </div>`
 
 }
 const generateBookmarkHtml = function (item) {

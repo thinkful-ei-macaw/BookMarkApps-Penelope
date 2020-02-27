@@ -1,4 +1,4 @@
-import store from "./store";
+import store from "./store.js";
 
 const BASE_URL = "https://thinkful-list-api.herokuapp.com/Penelope"
 const listApiFetch = async function (...args) {

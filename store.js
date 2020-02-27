@@ -11,33 +11,6 @@ const store = {
 
 };
 
-const store = {
-    bookmarks: [],
-    id: 'data',
-    title: 'Penelope',
-    rating: '1',
-    url: 'http://google.com',
-    expanded: true
-};
-
-const store = {
-    bookmarks: [],
-    id: 'data',
-    title: 'Penelope',
-    rating: '2',
-    url: 'http://google.com',
-    expanded: true
-};
-const store = {
-    bookmarks: [],
-    id: 'data',
-    title: 'Penelope',
-    rating: '4',
-    url: 'http://google.com',
-    expanded: false
-};
-
-
 const deleteBook = function (id) {
     return this.bookmarks = this.bookmarks.filter(currentBookmark => currentBookmark.id !== id)
 }

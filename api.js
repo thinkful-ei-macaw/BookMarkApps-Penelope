@@ -1,23 +1,25 @@
-'use strict'
-
+import store from "./store";
 const BASE_URL = "https://thinkful-list-api.herokuapp.com/Penelope"
 const listApiFetch = function (...args) {
     let error;
     return fetch(...args)
-    .then(res => {
-        if (!res.ok) {
-            error = { code: res.status};
-        }
-        return res.json();
-    })
-    
+        .then(res => {
+            if (!res.ok) {
+                error = {
+                    code: res.status
+                };
+            }
+            return res.json();
+        })
+
 };
-const validateName = function(title) {
+const validateName = function (title) {
     if (!title) {
         throw new TypeError('Must Provide Name');
     }
 };
-const validateUrl = function(url) {
+
+const validateUrl = function (url) {
     if (!url) {
         throw new TypeError('Must Provide Valid URL');
     }
@@ -25,8 +27,13 @@ const validateUrl = function(url) {
 const getBookmarks = function () {
     return listApiFetch(`${BASE_URL}/bookmarks`);
 };
-const newBookmark = function (title,url,rating,text) {
-    const newInput = JSON.stringify({title, rating, url,text });
+const newBookmark = function (title, url, rating, text) {
+    const newInput = JSON.stringify({
+        title,
+        rating,
+        url,
+        text
+    });
     return listApiFetch(`${BASE_URL}/bookmarks`, {
         method: 'POST',
         headers: {
@@ -45,26 +52,6 @@ export default {
     validateUrl,
     newBookmark,
     getBookmarks,
-    deleteBookmark
+    deleteBookmark,
+    ...store,
 };
-// $rating.append('<span id="' + i + '"src="span" />');
-// $('<span>', {
-//     id: 'rating' + i,
-//     src: 'rating'
-// }).appendTo($rating);
-// var hovered = 0, 
-//     star_clicked = 0;
-//       for (i = 1; i <= max_stars; i++) {
-//         if (i <= hovered) {
-//             $('#rating span#' + i).attr('src', 'span');
-//         } else {
-//             $('#rating span#' + i).attr('src', 'span');
-//         }
-//     }
-//     $(this).prevAll().attr('src', 'span');
-//     var requestOptions = {
-//         method: 'GET',
-//         redirect: 'follow'
-//       };
-      
-      

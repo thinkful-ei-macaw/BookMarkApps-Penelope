@@ -2,16 +2,16 @@
     column-count: auto;
     text-align: center;
     border:3px solid grey;
-    min-width: 400px;
-    min-height: 500px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    width: 400px;
+    height: 600px;
+    margin: 50px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    
     z-index: 200;
     box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.2);
     border-radius: 8px;
-    background-color:  rgba(235, 141, 27, 0.678); 
+    background-color:  plum; 
   }
   
   .rating > span:hover:before {
@@ -120,7 +120,15 @@ iframe{
   }
   
   
-  .dropdown-content a:hover {background-color: #ddd}
-  
- 
+  .dropdown-content a:hover {background-color: #ddd;
+  }
   .show {display:block;}
+  ul {
+    padding: 0;
+    margin: 0;
+    display: table;
+    border-spacing: .3em;
+}
+h1{
+  text-align: center;
+}

@@ -13,27 +13,27 @@ const store = {
 
 const store = {
     bookmarks: [],
-    id: '',
-    title: 'The Notebook',
+    id: 'data',
+    title: 'Penelope',
     rating: '1',
-    url: 'http://www.famousbooks.com',
+    url: 'http://google.com',
     expanded: true
 };
 
 const store = {
     bookmarks: [],
-    id: '',
-    title: 'Test',
+    id: 'data',
+    title: 'Penelope',
     rating: '2',
-    url: 'http://www.education.com',
+    url: 'http://google.com',
     expanded: true
 };
 const store = {
     bookmarks: [],
-    id: '',
-    title: 'Dinosaurs',
+    id: 'data',
+    title: 'Penelope',
     rating: '4',
-    url: 'http://www.science.com',
+    url: 'http://google.com',
     expanded: false
 };
 

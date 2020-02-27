@@ -1,16 +1,11 @@
 import store from "./store";
+
 const BASE_URL = "https://thinkful-list-api.herokuapp.com/Penelope"
-const listApiFetch = function (...args) {
+const listApiFetch = async function (...args) {
     let error;
-    return fetch(...args)
-        .then(res => {
-            if (!res.ok) {
-                error = {
-                    code: res.status
-                };
-            }
-            return res.json();
-        })
+    const res = await fetch(...args);
+    error = newFunction(res, error);
+    return res.json();
 
 };
 const validateName = function (title) {
@@ -53,5 +48,15 @@ export default {
     newBookmark,
     getBookmarks,
     deleteBookmark,
-    ...store,
+    store,
+    newFunction,
 };
+
+function newFunction(res, error) {
+    if (!res.ok) {
+        error = {
+            code: res.status
+        };
+    }
+    return error;
+}

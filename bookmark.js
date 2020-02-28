@@ -73,12 +73,25 @@ const bindEvents = function () {
 
 const handleToggleExpandClick = function () {
     $('main').on('click', '.expand', (e) => {
-        const id = getItemIdFromElement(e.currentTarget);
+        let id;
+        id = getItemIdFromElement(e.currentTarget);
         console.log("click")
         store.toggleExpandedId(id, true);
         render();
     });
 };
+
+const getItemIdFromElement = function () {
+    $('main').addEventListener("click", expandedBookmarkHtml);
+    const id = generateBookmarkHtml(e.currentTarget);
+    console.log('click')
+    store.toggleExpandedId(url, true);
+    render();
+}
+
+function display(description) {
+    getItemIdFromElement("description").innerHTML = Data();
+}
 export default {
     render,
     bindEvents,

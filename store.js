@@ -1,4 +1,4 @@
-const store = {
+let store = {
     bookmarks: [],
     adding: false,
     error: null,
@@ -11,14 +11,21 @@ const store = {
 
 };
 
-const deleteBook = function (id) {
-    return this.bookmarks = this.bookmarks.filter(currentBookmark => currentBookmark.id !== id)
+class deleteBook {
+    constructor(id) {
+        return this.bookmarks = this.bookmarks.filter(currentBookmark => currentBookmark.id !== id);
+    }
 }
 
 
 const addBookmark = function (bookmark) {
     this.bookmarks.push(bookmark)
 }
+const toggleExpandedId = function (id) {
+    let bookmark = findById(id);
+    bookmark.expanded = !bookmark.expanded;
+    return bookmark.expanded;
+};
 export default {
     ...store,
     deleteBook,

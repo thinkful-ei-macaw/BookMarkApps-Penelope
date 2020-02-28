@@ -70,16 +70,18 @@ const bindEvents = function () {
         })
     })
 }
-const renderitem = function (item) {
-    return ` <li data-item-id="${item.id}">
-${item.title} <button class="delete">DELETE</button>
-</li>
-`
 
-}
+const handleToggleExpandClick = function () {
+    $('main').on('click', '.expand', (e) => {
+        const id = getItemIdFromElement(e.currentTarget);
+        console.log("click")
+        store.toggleExpandedId(id, true);
+        render();
+    });
+};
 export default {
     render,
-    bindEvents
+    bindEvents,
 }
 //template generation function
 /// listen to events (click on  and submit)

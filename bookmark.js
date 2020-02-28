@@ -25,7 +25,7 @@ const render = function () {
 
 }
 
-function mainDataid() {
+function mainDataid() {''
 
     return;
 

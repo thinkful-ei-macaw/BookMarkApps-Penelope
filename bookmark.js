@@ -25,12 +25,6 @@ const render = function () {
 
 }
 
-function mainDataid() {''
-
-    return;
-
-}
-
 
 
 const bindEvents = function () {
@@ -71,7 +65,9 @@ const bindEvents = function () {
     })
 }
 
-const handleToggleExpandClick = function () {
+let expandedBookmarkHtml;
+
+expandedBookmarkHtml = function () {
     $('main').on('click', '.expand', (e) => {
         let id;
         id = getItemIdFromElement(e.currentTarget);
@@ -95,6 +91,7 @@ function display(description) {
 export default {
     render,
     bindEvents,
+    expandedBookmarkHtml,
 }
 //template generation function
 /// listen to events (click on  and submit)
@@ -132,7 +129,7 @@ const generateaddBookmarkHtml = function () {
     return html
 
 }
-const generateBookmarkHtml = function (item) {
+let generateBookmarkHtml = function (item) {
     if (item.expanded) {
         let expandedBookmarkHtml = `
     <form class="expanded-bookmarks">

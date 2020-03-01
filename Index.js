@@ -4,7 +4,7 @@ import store from "./store.js";
 const main = function () {
     api.getBookmarks()
         .then(data => {
-            console.log(data)
+            console.log(URL)
             data.forEach(element => {
                 store.addBookmark(element)
             });
@@ -24,6 +24,6 @@ var settings = {
   "data": "{\n    \"title\": \"Penelope\",\n    \"url\": \"http://google.com\"\n}",
 };
 
-$.ajax(settings).done(function (main) {
-  console.log(api);
+$.ajax(settings).done(function (_URL){
+  console.log();
 });

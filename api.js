@@ -27,7 +27,7 @@ const newBookmark = function (title, url, rating, text) {
         title,
         rating,
         url,
-        text
+        text,
     });
     return listApiFetch(`${BASE_URL}/bookmarks`, {
         method: 'POST',

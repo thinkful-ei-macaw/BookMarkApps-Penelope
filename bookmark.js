@@ -63,26 +63,25 @@ const bindEvents = function () {
             render()
         })
     })
+    expandedBookmarkHtml()
+    getItemIdFromElement()
 }
 
-let expandedBookmarkHtml;
 
-expandedBookmarkHtml = function () {
+
+const expandedBookmarkHtml = function () {
     $('main').on('click', '.expand', (e) => {
         let id;
         id = getItemIdFromElement(e.currentTarget);
-        console.log("click")
+        console.log("click",id)
         store.toggleExpandedId(id, true);
         render();
     });
 };
 
-const getItemIdFromElement = function () {
-    $('main').addEventListener("click", expandedBookmarkHtml);
-    const id = generateBookmarkHtml(e.currentTarget);
-    console.log('click')
-    store.toggleExpandedId(url, true);
-    render();
+const getItemIdFromElement = function (input) {
+  return $(input).data("item-id")
+
 }
 
 function display(description) {
@@ -132,7 +131,7 @@ const generateaddBookmarkHtml = function () {
 let generateBookmarkHtml = function (item) {
     if (item.expanded) {
         let expandedBookmarkHtml = `
-    <form class="expanded-bookmarks">
+    <div class="expanded-bookmarks">
     <div class="title-bar">
         <button class="delete" data-item-id='${item.id}'>DELETE</button>
         <legend class="saved-title">${item.title}</legend>
@@ -148,11 +147,11 @@ let generateBookmarkHtml = function (item) {
     <div class="expand-button">
         <button type="button" data-item-id='${item.id}' class="expand">Collapse</button>
     </div>
-</form>`;
+</div>`;
         return expandedBookmarkHtml;
     } else {
         let unexpandedBookmarkHtml = `
-    <form class="collapsed-bookmarks">
+    <div class="collapsed-bookmarks">
     <div class="title-bar">
         <button class="delete" data-item-id='${item.id}'>DELETE</button>
         <legend class="saved-title">${item.title}</legend>
@@ -161,7 +160,7 @@ let generateBookmarkHtml = function (item) {
     <div class="expand-button">
         <button type="button" data-item-id='${item.id}' class="expand">Expand</button>
     </div>
-    </form>`;
+    </div>`;
         return unexpandedBookmarkHtml;
     }
 };

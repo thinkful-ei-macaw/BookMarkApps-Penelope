@@ -22,12 +22,12 @@ const validateUrl = function (url) {
 const getBookmarks = function () {
     return listApiFetch(`${BASE_URL}/bookmarks`);
 };
-const newBookmark = function (title, url, rating, text) {
+const newBookmark = function (title, url, rating, desc) {
     const newInput = JSON.stringify({
         title,
         rating,
         url,
-        text,
+        desc,
     });
     return listApiFetch(`${BASE_URL}/bookmarks`, {
         method: 'POST',

@@ -11,18 +11,20 @@ let store = {
 
 };
 
-class deleteBook {
-    constructor(id) {
-        return this.bookmarks = this.bookmarks.filter(currentBookmark => currentBookmark.id !== id);
-    }
+function deleteBook(id) {
+
+    return this.bookmarks = this.bookmarks.filter(currentBookmark => currentBookmark.id !== id);
+
 }
 
-
+const findById = function (id) {
+    return this.bookmarks.find(item => item.id == id)
+}
 const addBookmark = function (bookmark) {
     this.bookmarks.push(bookmark)
 }
 const toggleExpandedId = function (id) {
-    let bookmark = findById(id);
+    let bookmark = this.findById(id);
     bookmark.expanded = !bookmark.expanded;
     return bookmark.expanded;
 };
@@ -30,6 +32,7 @@ export default {
     ...store,
     deleteBook,
     addBookmark,
-
+    toggleExpandedId,
+    findById,
 
 }

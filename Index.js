@@ -4,7 +4,7 @@ import store from "./store.js";
 const main = function () {
     api.getBookmarks()
         .then(data => {
-            console.log(URL)
+            console.log()
             data.forEach(element => {
                 store.addBookmark(element)
             });
